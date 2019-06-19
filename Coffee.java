@@ -144,7 +144,7 @@ public class Coffee
                     sub[i].setEnabled(false);
                     add[i].setEnabled(false);
                     Number[i].setText("0");
-                    OrderText.setText("   name        price        number        total\n\n");
+                    OrderText.setText("     name               price        number        total\n\n");
 
                 }
             }
@@ -162,7 +162,7 @@ public class Coffee
                     sub[i].setEnabled(false);
                     add[i].setEnabled(false);
                     Number[i].setText("0");
-                    OrderText.setText("   name        price        number        total\n\n");
+                    OrderText.setText("     name               price        number        total\n\n");
 
                 }
             }

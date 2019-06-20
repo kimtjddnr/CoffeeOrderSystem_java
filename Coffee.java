@@ -1,60 +1,44 @@
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.TextArea;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 public class Coffee 
+
 {
-
     private static final int Menu_Number = 8;
-
     JFrame frame = new JFrame("Coffee");
     String show;
-
     int[] Price;
     JButton ButtonList[] = new JButton[Menu_Number];
     Label PriceLabel[] = new Label[Menu_Number];
     TextField Number[] = new TextField[Menu_Number];
     JButton Save[] = new JButton[Menu_Number];
-
-    
+    Button add[] = new Button[Menu_Number];
+    Button sub[] = new Button[Menu_Number];
     public Coffee()
     {
-
-        frame.setBounds(0, 0, 625, 1000);
+        frame.setBounds(0, 0, 650, 1000);
         frame.setBackground(Color.black);
 
-        Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
+        Font font = new Font(Font.SANS_SERIF, Font.ITALIC, 18);
         Font font1 = new Font(Font.MONOSPACED, Font.BOLD, 15);
 
         Panel MenuPanel = new Panel();
-        MenuPanel.setBackground(new Color(255, 255, 215));
+        MenuPanel.setBackground(new Color(255,255,150));
         MenuPanel.setLayout(null);
-        MenuPanel.setSize(0, 500);
+        MenuPanel.setSize(500, 500);
         MenuPanel.setFont(font);
 
-        Button add[] = new Button[Menu_Number];
-        Button sub[] = new Button[Menu_Number];
 
-        for (int i = 0; i < Menu_Number; i++) {
+
+        for (int i = 0; i < Menu_Number; i++) 
+        {
             // image
             ButtonList[i] = new JButton();
-            if (i < 4) {
+            if (i < 4) 
+            {
                 ButtonList[i].setBounds(25 + i * 150, 50, 100, 100);
-            } else {
+            } else 
+            {
                 ButtonList[i].setBounds(25 + (i - 4) * 150, 300, 100, 100);
             }
 
@@ -62,11 +46,11 @@ public class Coffee
             Number[i] = new TextField("0");
             Number[i].setBackground(Color.white);
             Number[i].setEditable(false);
-            Number[i].setBounds(ButtonList[i].getX() + 30, ButtonList[i].getY() + 130, 40, 20);
+            Number[i].setBounds(ButtonList[i].getX() + 30, ButtonList[i].getY() + 130, 30, 20);
 
             // "+"
             add[i] = new Button("+");
-            add[i].setBounds(ButtonList[i].getX() + (100 - 20), Number[i].getY(), 20, 20);
+            add[i].setBounds(ButtonList[i].getX() + 80, Number[i].getY(), 20, 20);
             add[i].setEnabled(false);
 
             // "-"
@@ -76,7 +60,7 @@ public class Coffee
 
             // price
             PriceLabel[i] = new Label();
-            PriceLabel[i].setBounds(ButtonList[i].getX() + 15, Number[i].getY() - 25, 100, 20);
+            PriceLabel[i].setBounds(ButtonList[i].getX() + 25, Number[i].getY() - 25, 100, 20);
 
             // save
             Save[i] = new JButton("save");
@@ -91,8 +75,9 @@ public class Coffee
             MenuPanel.add(Save[i]);
         }
 
+
         Panel ChangePanel = new Panel();
-        ChangePanel.setBackground(new Color(255, 255, 215));
+        ChangePanel.setBackground(new Color(255, 255, 150));
         Button hot = new Button("hot");
         Button cold = new Button("cold");
 
@@ -109,12 +94,14 @@ public class Coffee
                 }
             }
         };
+
         hot.addActionListener(al);
         cold.addActionListener(al);
         ChangePanel.add(hot);
         ChangePanel.add(cold);
         ChangePanel.setBounds(250, 250, 100, 50);
         MenuPanel.add(ChangePanel);
+
 
         TextArea OrderText = new TextArea("", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
         OrderText.setText("     name               price        number        total\n\n");
@@ -124,22 +111,34 @@ public class Coffee
 
         Panel OrderPanel = new Panel();
         OrderPanel.setFont(font);
-        OrderPanel.setBackground(new Color(255, 255, 215));
+        OrderPanel.setBackground(new Color(255, 255, 150));
 
         Button bt1 = new Button("order");
         Button bt2 = new Button("clear");
         Button bt3 = new Button("exit");
+       
         OrderPanel.add(bt1);
         OrderPanel.add(bt2);
         OrderPanel.add(bt3);
-
+        
+        //order event
         bt1.addActionListener(new ActionListener() 
         {
-
             @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, OrderText.getText() + " The order is complete.");
-                for (int i = 0; i < Menu_Number; i++) {
+
+            public void actionPerformed(ActionEvent e)
+            {
+            	String n=OrderText.getText();
+            	if(n.equals("     name               price        number        total\n\n"))
+            	{
+            		JOptionPane.showMessageDialog(null,"There is no coffee you ordered.");
+            	}
+            	else
+            	{
+            		JOptionPane.showMessageDialog(null, OrderText.getText() + " The order is complete.");
+            	}  
+                for (int i = 0; i < Menu_Number; i++) 
+                {
                     ButtonList[i].setEnabled(true);
                     sub[i].setEnabled(false);
                     add[i].setEnabled(false);
@@ -147,12 +146,14 @@ public class Coffee
                     OrderText.setText("     name               price        number        total\n\n");
 
                 }
+
             }
+
         });
 
+        //clear event
         bt2.addActionListener(new ActionListener()
         {
-
             @Override
             public void actionPerformed(ActionEvent e) 
             {
@@ -168,12 +169,15 @@ public class Coffee
             }
         });
 
-        bt3.addActionListener(new ActionListener() {
 
+        //exit
+        bt3.addActionListener(new ActionListener() 
+        {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
+
         });
 
         frame.add(MenuPanel, BorderLayout.NORTH);
@@ -181,26 +185,35 @@ public class Coffee
         frame.add(OrderPanel, BorderLayout.SOUTH);
         frame.setVisible(true);
 
-        // event
-        for (int i = 0; i < Menu_Number; i++) {
-            int j = i;
 
-            ButtonList[i].addActionListener(new ActionListener() {
+
+        // event
+        for (int i = 0; i < Menu_Number; i++) 
+        {
+            int j = i;
+            ButtonList[i].addActionListener(new ActionListener() 
+            {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e) 
+                {
                     sub[j].setEnabled(false);
                     add[j].setEnabled(true);
                     ButtonList[j].setEnabled(false);
                     Save[j].setEnabled(false);
                     Number[j].setText("0");
                 }
+
             });
 
+
+
             // "-" event
-            sub[i].addActionListener(new ActionListener() {
+            sub[i].addActionListener(new ActionListener()
+            {
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e) 
+                {
                     int count = Integer.parseInt(Number[j].getText()) - 1;
                     if (count >= 0) {
                         Number[j].setText(Integer.toString(count));
@@ -213,76 +226,105 @@ public class Coffee
                 }
             });
 
-            // "+" event
-            add[i].addActionListener(new ActionListener() {
 
+
+
+            // "+" event
+            add[i].addActionListener(new ActionListener() 
+            {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e)
+                {
                     int count = Integer.parseInt(Number[j].getText()) + 1;
                     Number[j].setText(count + "");
                     Save[j].setEnabled(true);
                     if (count > 0) {
+
                         sub[j].setEnabled(true);
                     }
                 }
+
             });
 
-            // save event
-            Save[i].addActionListener(new ActionListener() {
 
+
+            // save event
+            Save[i].addActionListener(new ActionListener() 
+            {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e) 
+                {
                     int count = Integer.parseInt(Number[j].getText());
                     show = ButtonList[j].getActionCommand();
-                    OrderText.append("   " + show + "       " + Price[j] + "        " + count + "         " + Price[j] * count + "won" + "\n");
+                    int sum=Price[j] * count;
+                    String commaPrice=String.format("%,d", Price[j]);
+                    String commaSum=String.format("%,d", sum);
+                    OrderText.append("  " + show + "           " + commaPrice + "           " + count + "          " + commaSum + "\n");
                     Save[j].setEnabled(false);
                     ButtonList[j].setEnabled(true);
                     Number[j].setText("0");
+
                 }
+
             });
+
+
 
         }
 
-        // exit
-        frame.addWindowListener(new WindowAdapter() {
+        // exit event
+        frame.addWindowListener(new WindowAdapter()
+        {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent e) 
+            {
                 System.exit(0);
             }
         });
 
         // init menu hot
+
         setMenu("hot");
     }
 
-    // Set menu (Hot or Cold)
+    // Set menu (hot or cold)
     private void setMenu(String hotCold) 
     {
         String[] Menu = null;
         if (hotCold.equals("hot")) 
         {
-            Menu = new String[] { "Americano", "Cappuccino", "Caffe Latte", "hazelnut Latte", "Caramel macchiato", "Toffeenut Latte", "Green tea Latte", "Espresso" };
-            Price = new int[] { 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000 };
+        	Menu = new String[] { "Americano  ", "Cafe Late  ", "Cafe Mocha ", "Cappuchino ", "Flat white ", "Plarocchino", "Irishcoffee", "Espresso   " };
+            Price = new int[] { 3500, 4000, 4500, 4500, 5000, 4000, 3500, 3000 };
         } 
+
         else if (hotCold.equals("cold"))
         {
-            Menu = new String[] { "Vienna Coffee", "Ice Americano", "Cold Brew", "Dutch Coffee", "Ice Vanilla Latte", "Ice Hazelnut", "einspanner", "Ice Cafe Latte" };
-            Price = new int[] { 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000 };
+            Menu = new String[] { "Americano  ", "Cafe Late  ", "Cafe Mocha ", "Cappuchino ", "Flat white ", "Plarocchino", "Irishcoffee", "Espresso   " };
+            Price = new int[] { 4000, 4000, 4500, 4500, 5000, 4000, 3500, 3000 };
         }
 
         for (int i = 0; i < Menu_Number; i++) {
-            PriceLabel[i].setText(Price[i] + "won");
+        	
+        	String commaPrice = String.format("%,d", Price[i]);
+        	PriceLabel[i].setText(commaPrice);
             ButtonList[i].setText(Menu[i]);
-            ButtonList[i].setIcon(new ImageIcon(hotCold + i + ".png")); 
+            if(hotCold.equals("hot"))
+            	ButtonList[i].setIcon(new ImageIcon("C:\\Users\\82108\\eclipse-workspace\\CoffeeOrderSystem\\src\\image\\ÇÖ\\"+i+".png"));
+            else
+            	ButtonList[i].setIcon(new ImageIcon("C:\\Users\\82108\\eclipse-workspace\\CoffeeOrderSystem\\src\\image\\¾ÆÀÌ½º\\"+i+".png"));
             ButtonList[i].setEnabled(true);
             Number[i].setText("0");
             Number[i].setEditable(false);
             Save[i].setEnabled(false);
         }
+
     }
+    
 
     public static void main(String[] args)
+
     {
         new Coffee();
     }
-}
+
+} 

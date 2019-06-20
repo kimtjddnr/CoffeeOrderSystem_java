@@ -36,10 +36,10 @@ public class Coffee
             ButtonList[i] = new JButton();
             if (i < 4) 
             {
-                ButtonList[i].setBounds(25 + i * 150, 50, 100, 100);
+                ButtonList[i].setBounds(25 + i * 150, 50, 90, 100);
             } else 
             {
-                ButtonList[i].setBounds(25 + (i - 4) * 150, 300, 100, 100);
+                ButtonList[i].setBounds(25 + (i - 4) * 150, 300, 90, 100);
             }
 
             // number

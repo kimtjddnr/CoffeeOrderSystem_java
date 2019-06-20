@@ -36,10 +36,10 @@ public class Coffee
             ButtonList[i] = new JButton();
             if (i < 4) 
             {
-                ButtonList[i].setBounds(25 + i * 150, 50, 90, 100);
+                ButtonList[i].setBounds(25 + i * 150, 50, 100, 100);
             } else 
             {
-                ButtonList[i].setBounds(25 + (i - 4) * 150, 300, 90, 100);
+                ButtonList[i].setBounds(25 + (i - 4) * 150, 300, 100, 100);
             }
 
             // number
@@ -51,22 +51,23 @@ public class Coffee
             // "+"
             add[i] = new Button("+");
             add[i].setBackground(new Color(255,255,255));
-            add[i].setBounds(ButtonList[i].getX() + 75, Number[i].getY(), 20, 20);
+            add[i].setBounds(ButtonList[i].getX() + 80, Number[i].getY(), 20, 20);
+            add[i].setEnabled(false);
             
             // "-"
             sub[i] = new Button("-");
             add[i].setBackground(new Color(255,255,255));
-            sub[i].setBounds(ButtonList[i].getX()-5, Number[i].getY(), 20, 20);
+            sub[i].setBounds(ButtonList[i].getX(), Number[i].getY(), 20, 20);
             sub[i].setEnabled(false);
 
             // price
             PriceLabel[i] = new Label();
-            PriceLabel[i].setBounds(ButtonList[i].getX() + 20, Number[i].getY() - 25, 100, 20);
+            PriceLabel[i].setBounds(ButtonList[i].getX() + 25, Number[i].getY() - 25, 100, 20);
 
             // save
             Save[i] = new JButton("save");
             Save[i].setBackground(new Color(051,255,255));
-            Save[i].setBounds(ButtonList[i].getX()-5, Number[i].getY() + 30, 100, 20);
+            Save[i].setBounds(ButtonList[i].getX(), Number[i].getY() + 30, 100, 20);
             Save[i].setEnabled(false);
 
             MenuPanel.add(ButtonList[i]);
@@ -118,7 +119,7 @@ public class Coffee
 
         Panel OrderPanel = new Panel();
         OrderPanel.setFont(font);
-        OrderPanel.setBackground(new Color(051,051,051));
+        OrderPanel.setBackground(new Color(255,255,255));
 
         Button bt1 = new Button("order");
         Button bt2 = new Button("clear");
@@ -142,7 +143,7 @@ public class Coffee
             	}
             	else
             	{
-            		JOptionPane.showMessageDialog(null, OrderText.getText() + " The order is complete.");
+            		JOptionPane.showMessageDialog(null, n + " The order is complete.");
             	}  
                 for (int i = 0; i < Menu_Number; i++) 
                 {
@@ -256,7 +257,7 @@ public class Coffee
 
 
             // save event
-            Save[i].addActionListener(new ActionListener() 
+            Save[i].addActionListener (new ActionListener() 
             {
                 @Override
                 public void actionPerformed(ActionEvent e) 
@@ -316,9 +317,9 @@ public class Coffee
         	PriceLabel[i].setText(commaPrice);
             ButtonList[i].setText(Menu[i]);
             if(hotCold.equals("hot"))
-            	ButtonList[i].setIcon(new ImageIcon("C:\\Users\\82108\\eclipse-workspace\\CoffeeOrderSystem\\src\\image\\Ã‡Ã–\\"+i+".png"));
+            	ButtonList[i].setIcon(new ImageIcon("C:\\Users\\82108\\eclipse-workspace\\CoffeeOrderSystem\\src\\image\\ÇÖ\\"+i+".png"));
             else
-            	ButtonList[i].setIcon(new ImageIcon("C:\\Users\\82108\\eclipse-workspace\\CoffeeOrderSystem\\src\\image\\Â¾Ã†Ã€ÃŒÂ½Âº\\"+i+".png"));
+            	ButtonList[i].setIcon(new ImageIcon("C:\\Users\\82108\\eclipse-workspace\\CoffeeOrderSystem\\src\\image\\¾ÆÀÌ½º\\"+i+".png"));
             ButtonList[i].setEnabled(true);
             Number[i].setText("0");
             Number[i].setEditable(false);

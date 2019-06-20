@@ -23,7 +23,7 @@ public class Coffee
         Font font1 = new Font(Font.MONOSPACED, Font.BOLD, 15);
 
         Panel MenuPanel = new Panel();
-        MenuPanel.setBackground(new Color(255,255,150));
+        MenuPanel.setBackground(new Color(051,051,051));
         MenuPanel.setLayout(null);
         MenuPanel.setSize(500, 500);
         MenuPanel.setFont(font);
@@ -50,11 +50,12 @@ public class Coffee
 
             // "+"
             add[i] = new Button("+");
+            add[i].setBackground(new Color(255,255,255));
             add[i].setBounds(ButtonList[i].getX() + 80, Number[i].getY(), 20, 20);
-            add[i].setEnabled(false);
-
+            
             // "-"
             sub[i] = new Button("-");
+            add[i].setBackground(new Color(255,255,255));
             sub[i].setBounds(ButtonList[i].getX(), Number[i].getY(), 20, 20);
             sub[i].setEnabled(false);
 
@@ -64,6 +65,7 @@ public class Coffee
 
             // save
             Save[i] = new JButton("save");
+            Save[i].setBackground(new Color(051,255,255));
             Save[i].setBounds(ButtonList[i].getX(), Number[i].getY() + 30, 100, 20);
             Save[i].setEnabled(false);
 
@@ -77,10 +79,15 @@ public class Coffee
 
 
         Panel ChangePanel = new Panel();
-        ChangePanel.setBackground(new Color(255, 255, 150));
+        ChangePanel.setBackground(new Color(051,051,051));
         Button hot = new Button("hot");
+        hot.setBackground(new Color(255,000,051));
+        hot.setForeground(Color.WHITE);
+        
         Button cold = new Button("cold");
-
+        cold.setBackground(new Color(051,000,255));
+        cold.setForeground(Color.WHITE);
+        
         ActionListener al = new ActionListener() 
         {
             @Override
@@ -111,7 +118,7 @@ public class Coffee
 
         Panel OrderPanel = new Panel();
         OrderPanel.setFont(font);
-        OrderPanel.setBackground(new Color(255, 255, 150));
+        OrderPanel.setBackground(new Color(051,051,051));
 
         Button bt1 = new Button("order");
         Button bt2 = new Button("clear");
